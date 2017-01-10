@@ -1,0 +1,23 @@
+
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password:
+  host: localhost
+
+development:
+  <<: *default
+  database: MediaPrint_development
+
+test:
+  <<: *default
+  database: MediaPrint_test
+
+
+production:
+  <<: *default
+  database: MediaPrint_production
+  username: MediaPrint
+  password: <%= ENV['MEDIAPRINT_DATABASE_PASSWORD'] %>

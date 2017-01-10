@@ -1,0 +1,22 @@
+!!! 5
+%html
+%head
+	%title MediaPrint
+	= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+	= javascript_include_tag 'application', 'data-turbolinks-track' => true
+	= csrf_meta_tags
+%body
+	- flash.each do |name, msg|
+		= content_tag :div, msg, class: "alert alert-info"
+	
+	= yield
+
+	/ .modal.fade.particular{ tabindex: '-1', role: 'dialog'}
+	/ 	.modal-dialog.modal-lg{role: 'document'}
+	/ 		.modal-content
+	/ 			asdfasdfasdfasdfasdf
+
+	.modal.fade.modal-md{ tabindex: '-1', role: 'dialog',id: 'item'}
+		.modal-dialog.modal-md{role: 'document'}
+			.modal-content
+				%div{id: 'item_content'}

@@ -1,0 +1,351 @@
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+html {
+    overflow-y:scroll;
+}
+
+* {font-family: "OpenSans", Sans-serif}
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+.center-block {
+    float: none !important;
+    display: block;
+    margin-left: auto;
+    margin-top: auto;
+    margin-right: auto;
+    
+}
+
+/*signin*/
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.tab-pane {
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px;
+    
+}
+
+.nav-tabs {
+    margin-bottom: 10;
+}
+
+.img-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+    /*margin: 30% 0 auto;*/
+}
+
+.lblinfo {
+    color: #FF4209;
+    text-align: left;
+    font-weight: bold;
+    height: 30px;
+    line-height: 1.5;
+    font-size: 1em;
+    padding: 3px 12px;
+    /*border:none;*/
+
+}
+
+.iconheader {
+    color: #FF4209;
+    /*border:none;*/
+
+}
+.lbldates {
+    color: #FF4209;
+    /*text-align: left;*/
+    font-weight: bold;
+    /*height: 30px;*/
+    /*line-height: 1.5;*/
+    font-size: 12px;
+    /*padding: 3px 12px;*/
+    /*border:none;*/
+
+}
+
+input.input-sm {
+    font-size: 14px;
+    padding: 0px 12px;
+}
+div.btm-bord {
+    border-bottom: 1px solid gray
+} 
+.btn-round {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 10px 10px;
+}
+
+.btn-round.btn-lg {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-round.btn-sm {
+    width: 34px;
+    height: 34px;
+}
+
+.btn-round.btn-xs {
+    width: 24px;
+    height: 24px;
+}
+
+.text-left{
+    text-align: left;
+}
+.alert-fixed {
+    position:fixed; 
+    disposition:inline;
+    top: 60px; 
+    right: 100px; 
+    width: 70%;
+    z-index:9999; 
+    border-radius:0px;
+    opacity: 0.9;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+
+.btn-orange{
+    background-color: #FF4209;
+    color: #fff;
+    disposition: block;
+}
+.btn-orange:hover{
+    background-color: #A52F0C;
+    color: #ffe;
+}
+
+.thumbnail {
+    position:relative;
+    overflow:hidden;
+}
+ 
+.caption {
+    position:absolute;
+    top:0;
+    right:0;
+    background: gray;
+    opacity: 0.5;
+    width:100%;
+    height:100%;
+    padding:2%;
+    display: none;
+    text-align:center;
+    color:#fff !important;
+    z-index:2;
+}
+
+./*modal-header {
+    background-color: #0E0E29;
+    color: #fff;
+    color: #0E0E29;
+    border-bottom-color: #FF4209;
+    border-bottom-width: 2px;
+
+
+}*/
+
+.panel-style {
+    margin:0 50 0 50px;
+    border: 1px solid gray;
+}
+
+/*.wrow {
+    border: 1px 0 0 0 solid gray;
+
+}*/
+
+.dtpicker {
+    position: relative;
+}
+#error_explanation h5 {
+    /*font-size: 12px;*/
+    font-weight: bold;
+}
+
+#error_explanation ul li {
+    font-style: italic;
+}
+
+table#tblpatients {
+  border-left: 1px solid #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+
+table#tblappointment {
+  border-left: 1px solid #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+}
+
+/*#target {
+    border:1px gray solid;
+
+}*/
+
+.imgtarget {
+    height: 150px;
+}
+

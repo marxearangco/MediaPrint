@@ -1,0 +1,57 @@
+= simple_form_for(@particular, html: { multipart: true }) do |f|
+	.modal-body
+		.row
+			.col-lg-6
+				.form-group
+					= f.label "Media Type:  ", class: 'control-label'
+					&nbsp;
+					= f.select :media_type, options_from_collection_for_select(Product.all, :media, :media,'Tarpaulin'), {:prompt => 'Select product'}, {:class => 'form-control'}
+			.col-lg-2
+				.form-group
+					= f.label "qty:  ", class: 'control-label'
+					&nbsp;
+					= f.text_field :qty, class: 'form-control'
+			.col-lg-4
+				.form-group
+					= f.label "Amount", class: 'control-label'
+					%br
+					= f.text_field :amount, class: 'form-control'
+		.row
+			.col-lg-12
+				.form-group
+					= f.label "Description", class: 'control-label'
+					%br
+					= f.text_area :description, class: 'form-control'
+		.row
+			.col-lg-12
+				= f.file_field :image, class: 'form-control', mutiple: true
+				%br
+				%div{id: 'target'}
+					.img-responsive.img-thumbnail{id: 'target'}
+					- if @particular.image
+						- @particular.image.each do |i|
+							= image_tag @image.image.url(:thumb)
+					- else
+						= image_tag '/images/thumb/no-image.png'
+	.modal-footer
+		%button.btn.btn-default{data: {dismiss: 'modal'}} Close
+		= f.button :submit, class: 'btn btn-primary'
+
+
+:javascript
+	$(function() {
+	  $('#particular_image').on('change', function(event) {
+	    var files = event.target.files;
+	    var image = files[0]
+	    var reader = new FileReader();
+	    reader.onload = function(file) {
+	      var img = new Image();
+	      console.log(file);
+	      img.src = file.target.result;
+	      $('#target').html(img);
+	      $('img').addClass('imgtarget')
+	    }
+	    reader.readAsDataURL(image);
+	    console.log(files);
+	  });
+	});

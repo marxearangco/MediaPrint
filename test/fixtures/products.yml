@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  media: MyString
+  qty: 1
+  w_size: false
+
+two:
+  media: MyString
+  qty: 1
+  w_size: false
