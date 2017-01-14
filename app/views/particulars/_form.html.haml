@@ -1,11 +1,11 @@
-= simple_form_for(@particular, html: { multipart: true }) do |f|
+= simple_form_for(@particular, :url => customer_particulars_path,:method =>'post', html: { multipart: true }) do |f|
 	.modal-body
 		.row
 			.col-lg-6
 				.form-group
 					= f.label "Media Type:  ", class: 'control-label'
 					&nbsp;
-					= f.select :media_type, options_from_collection_for_select(Product.all, :media, :media,'Tarpaulin'), {:prompt => 'Select product'}, {:class => 'form-control'}
+					= f.select :media, options_from_collection_for_select(Product.all, :media, :media,@particular.media), {:prompt => 'Select product'}, {:class => 'form-control'}
 			.col-lg-2
 				.form-group
 					= f.label "qty:  ", class: 'control-label'
@@ -24,15 +24,11 @@
 					= f.text_area :description, class: 'form-control'
 		.row
 			.col-lg-12
-				= f.file_field :image, class: 'form-control', mutiple: true
-				%br
-				%div{id: 'target'}
-					.img-responsive.img-thumbnail{id: 'target'}
-					- if @particular.image
-						- @particular.image.each do |i|
-							= image_tag @image.image.url(:thumb)
-					- else
-						= image_tag '/images/thumb/no-image.png'
+				.form-group
+					- f.fields_for :picture do |img|
+						= img.file_field :image, class: 'form-control'
+						=# image_tag f.image.url(:thumb)
+				
 	.modal-footer
 		%button.btn.btn-default{data: {dismiss: 'modal'}} Close
 		= f.button :submit, class: 'btn btn-primary'

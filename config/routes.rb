@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root "designs#index"
-  resources :designs
-  resources :particulars
+  
+  resources :customers do 
+  	resources :particulars do
+  		resources :pictures
+  	end
+  end
+  root 'customers#index'
 end

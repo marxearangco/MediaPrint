@@ -1,23 +1,18 @@
 class ParticularsController < ApplicationController
   before_action :find_params, only: [:show,:edit,:destroy,:update]
-  attr_accessor :images
-
-  def index
-    @particular = Particular.find(design.id)
-  end
-
+  
   def new
-    @particular = Particular.new
     @products = Product.all
+    @particular = Particular.new
   end
 
   def create
-    @particular = Particular.new(params_particular)
+    @customer = Customer.find(params[:customer_id])
+    @particular = @customer.particulars.create(params_particular)
     if @particular.save
-      @i=Image.new(params_image)
-      redirect_to @particular,notice: 'Successfully added items!'
+      redirect_to @customer,notice: 'Successfully added items!'
     else
-      render @particular
+      redirect_to @customer
     end
   end
 
@@ -27,13 +22,16 @@ class ParticularsController < ApplicationController
 
   def update
     if @particular.update(params_particular)
-      redirect_to design_path(@particular.design_id),notice: "Successfully updated items!"
+      redirect_to customers_path(@particular.customer_id),notice: "Successfully updated items!"
     else
-      render @particular,notice: "Error in updating!"
+      render @particular, notice: "Error in updating!"
     end
   end
 
   def destroy
+    @particular.destroy
+
+    redirect_to customer_path(params[:customer_id])
   end
 
   def edit
@@ -42,22 +40,12 @@ class ParticularsController < ApplicationController
   private
 
   def params_particular
-    params.require(:particular).permit(:media_type,:qty,:amount,:description)
-    # ,:w_design,:description,:image
-  end
-
-  def params_image
-    params.require(:image).permit(:image)
+    params.require(:particular).permit(:media,:qty,:amount,:w_design,:description,picture_attributes:[:image])
   end
 
   def find_params
     @particular = Particular.find(params[:id])
-    @image = Image.find(@particular.id)
+
   end
 
-  def images=(files)
-    files.each do |file|
-      image.create(image: file)
-    end
-  end
 end

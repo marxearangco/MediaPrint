@@ -1,0 +1,29 @@
+.container
+	%h3 Customers
+	%br
+	%table{id: "customers"}
+		%thead
+			%tr 
+				%th Date
+				%th Customer
+				%th Pickup On
+				%th Remarks
+		%tbody
+			- @customers.each do |d|
+				%tr
+					%td= d.created_at.strftime('%F')
+					%td= link_to d.customer_name,d
+					%td= d.pickup_date
+					%td= d.remarks
+
+	= link_to raw('<span class="fa fa-plus"></span> Add New'), new_customer_path, class: "btn btn-primary"
+
+:javascript
+	jQuery(function($) {
+		$('#customers').DataTable({
+			sPaginationType: "full_numbers",
+			bJQueryUI: true,
+			bdestroy: true
+			// sDom: '<"H"Tl>tS<"F"ip>'
+		});
+	});

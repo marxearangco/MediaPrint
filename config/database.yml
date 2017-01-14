@@ -9,15 +9,15 @@ default: &default
 
 development:
   <<: *default
-  database: MediaPrint_development
+  database: MabuhayPrint
 
 test:
   <<: *default
-  database: MediaPrint_test
+  database: MabuhayPrint_test
 
 
 production:
   <<: *default
-  database: MediaPrint_production
-  username: MediaPrint
-  password: <%= ENV['MEDIAPRINT_DATABASE_PASSWORD'] %>
+  database: MabuhayPrint_production
+  username: MabuhayPrint
+  password: <%= ENV['MABUHAYPRINT_DATABASE_PASSWORD'] %>

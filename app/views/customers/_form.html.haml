@@ -1,0 +1,72 @@
+%br 
+%br
+%br
+%br
+- if @customer.errors.any?
+	#errors
+		%h2
+		= pluralize(@customer.errors.count,"error")
+		prevented this customer from saving
+		%ul
+			- @customer.errors.full_messages.each do |msg|
+				%li= msg
+.container
+	.panel.panel-default.panel-style
+		= simple_form_for @customer, html: { multipart: true} do |f|
+			.panel-heading
+				.form-inline
+					.form-group
+						= f.label "Customer:  ", class: 'control-label'
+						&nbsp;
+						= f.text_field :customer_name, class: 'form-control'
+					.form-group.pull-right.dtpicker
+						= f.label "Pickup On:  ", class: 'control-label'
+						&nbsp;
+						= f.text_field :pickup_date, class: 'form-control'
+
+			.panel-body.wrow
+				%h3 Item/Particulars
+				%table.table
+					%thead
+						%tr 
+							%th Media Type
+							%th QTY
+							%th Description
+							%th Amount
+							%th With design
+							%th Action
+					%tbody
+					- if @particulars
+						- @particulars.each do |p|
+							%tr
+								%td= p.media
+								%td= p.qty
+								%td= p.description
+								%td= 100
+								%td= design_type(p.w_design)
+								%td
+									= link_to raw('<i class="fa fa-eye"></i>'),customer_particular_path(@customer.id,p), remote: true, data:{toggle: 'modal',target: '#item'} 
+									= link_to raw('<i class="fa fa-trash"></i>'),customer_particular_path(@customer.id,p), method: :delete, data: {confirm: 'Are you sure?'} 
+				%br
+				.row
+					.form-group.col-lg-6
+						= f.label "Remarks", class: 'control-label'
+						%br
+						= f.text_area :remarks, class: 'form-control colspan-6'
+					.form-group.col-lg-6
+						%br
+						%br
+						.pull-right
+							- if params[:id]
+								= link_to raw('<span class="fa fa-plus"></span> Add Items'), new_customer_particular_path(@customer), remote: true, class: "btn btn-primary", data:{toggle: 'modal',target: '#item'} 
+
+							= f.button :submit, class: "btn btn-orange"
+						%br
+
+:javascript
+	$(function () {
+		$('#customer_pickup_date').datetimepicker();
+			format: 'YYYY-MM-DD HH:mm' 
+	});
+
+	

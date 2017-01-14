@@ -11,53 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110080129) do
+ActiveRecord::Schema.define(version: 20170111081623) do
 
-  create_table "designs", force: :cascade do |t|
-    t.string   "customer",    limit: 255
-    t.string   "pickup_date", limit: 50
-    t.string   "pickup_time", limit: 50
-    t.string   "remarks",     limit: 255
-    t.string   "status",      limit: 50
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+  create_table "customers", force: :cascade do |t|
+    t.string   "customer_name", limit: 255
+    t.date     "pickup_date"
+    t.time     "pickup_time"
+    t.string   "remarks",       limit: 255
+    t.string   "status",        limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
-
-  create_table "images", force: :cascade do |t|
-    t.string   "particular_id",      limit: 255
-    t.string   "image_file_name",    limit: 255
-    t.string   "image_content_type", limit: 255
-    t.integer  "image_file_size",    limit: 4
-    t.datetime "image_updated_at"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
-
-  add_index "images", ["particular_id"], name: "index_images_on_particular_id", using: :btree
 
   create_table "particulars", force: :cascade do |t|
-    t.string   "media_type",         limit: 255
-    t.integer  "qty",                limit: 4
+    t.string   "media",        limit: 255
+    t.integer  "qty",          limit: 4
     t.boolean  "w_design"
-    t.string   "description",        limit: 255
-    t.float    "amount",             limit: 53
+    t.string   "description",  limit: 255
+    t.float    "amount",       limit: 24
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "customers_id", limit: 4
+  end
+
+  add_index "particulars", ["customers_id"], name: "index_particulars_on_customers_id", using: :btree
+
+  create_table "pictures", force: :cascade do |t|
     t.string   "image_file_name",    limit: 255
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
+    t.integer  "particular_id",      limit: 4
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.integer  "design_id",          limit: 4
   end
 
-  add_index "particulars", ["design_id"], name: "index_particulars_on_design_id", using: :btree
+  add_index "pictures", ["particular_id"], name: "index_pictures_on_particular_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string  "media",       limit: 255
-    t.boolean "w_size"
-    t.string  "description", limit: 255
-    t.float   "price",       limit: 53
+    t.string "media",       limit: 255
+    t.string "unit",        limit: 255
+    t.float  "price",       limit: 24
+    t.string "description", limit: 255
   end
 
-  add_foreign_key "particulars", "designs"
 end
